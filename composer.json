@@ -1,0 +1,59 @@
+{
+  "name": "brew-bytes/acorn-conversion-pixels",
+  "type": "package",
+  "description": "Drop-in advertising-pixel integration for Roots Sage themes — Meta, LinkedIn, TikTok, Pinterest, X, Reddit, and Snap pixels with consent-required defaults and the unified custom-events API from acorn-analytics.",
+  "keywords": [
+    "wordpress",
+    "sage",
+    "acorn",
+    "roots",
+    "pixels",
+    "meta-pixel",
+    "facebook-pixel",
+    "linkedin-insight",
+    "tiktok-pixel",
+    "advertising"
+  ],
+  "homepage": "https://github.com/Brew-Bytes/acorn-conversion-pixels",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Scott Hartley",
+      "homepage": "https://github.com/Brew-Bytes"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/Brew-Bytes/acorn-conversion-pixels/issues",
+    "source": "https://github.com/Brew-Bytes/acorn-conversion-pixels"
+  },
+  "autoload": {
+    "psr-4": {
+      "BrewAndBytes\\AcornConversionPixels\\": "src/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/Brew-Bytes/acorn-analytics"
+    }
+  ],
+  "require": {
+    "php": ">=8.1",
+    "brew-bytes/acorn-analytics": "^0.2"
+  },
+  "require-dev": {
+    "laravel/pint": "^1.13",
+    "php-stubs/wordpress-stubs": "^6.6",
+    "phpstan/phpstan": "^2.1",
+    "roots/acorn": "^4.0|^5.0",
+    "szepeviktor/phpstan-wordpress": "^2.0"
+  },
+  "extra": {
+    "acorn": {
+      "providers": [
+        "BrewAndBytes\\AcornConversionPixels\\ConversionPixelsServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "stable"
+}

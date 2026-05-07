@@ -33,15 +33,13 @@ class LinkedinInsightModule extends AbstractModule
             $event = esc_js($this->consentEvent());
             $deferred = "window.addEventListener('{$event}', function(){{$loader}}, { once: true });";
             echo "<!-- LinkedIn Insight (deferred) -->\n<script>{$deferred}</script>\n";
-
-            return;
+        } else {
+            echo "<!-- LinkedIn Insight -->\n<script>{$loader}</script>\n";
         }
 
-        echo "<!-- LinkedIn Insight -->\n<script>{$loader}</script>\n";
-
-        // LinkedIn doesn't have a generic event API — conversions are routed
-        // by ID. If user has configured event → conversion-ID mappings, output
-        // a small dispatcher that routes analytics:event payloads accordingly.
+        // The conversion router is safe to attach unconditionally — its `lintrk`
+        // typeof check no-ops cleanly until the SDK loads (whether immediately
+        // or after consent fires).
         $this->printConversionRouter();
     }
 

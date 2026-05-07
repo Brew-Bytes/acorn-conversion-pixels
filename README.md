@@ -135,6 +135,23 @@ itself), set `consent.required => false`. **Don't ship advertising pixels
 without consent gating in GDPR/CCPA jurisdictions** unless you have legal
 clearance.
 
+## A note on PII
+
+The bridge passes the `analytics:event` `detail` payload through to each
+pixel verbatim. If you're using `acorn-analytics`'s auto-tracking module,
+the default `phone_click` and `email_click` events include the literal
+phone number / email address from the clicked link.
+
+For a typical business site this is your **own** published contact info —
+not visitor PII. For sites where contact links come from user input
+(vCard exports, marketplace seller profiles, etc.), those values *would*
+be visitor PII. Meta in particular flags PII in custom event params and
+can throttle / suspend pixels that send unhashed contact info.
+
+If your site mixes user-input contact links with pixel forwarding, either
+disable the relevant `auto-tracking` sub-features in `acorn-analytics`,
+or extend the bridge to redact / hash sensitive fields before dispatch.
+
 ## What it doesn't do
 
 - **Server-side conversion APIs** (Meta CAPI, LinkedIn CAPI, TikTok Events
